@@ -65,7 +65,7 @@ export function AppsShowcase() {
           >
             {apps.map((app) => (
               <div key={app.id} className="snap-start shrink-0">
-                <AppCard app={app} featured={app.id === 'xcrawl'} />
+                <AppCard app={app} />
               </div>
             ))}
             <div className="min-w-4 shrink-0" />

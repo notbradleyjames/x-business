@@ -3,10 +3,12 @@ import {
   Layers,
   MessageSquare,
   Zap,
+  Database,
+  Mail,
   ArrowRight,
   type LucideIcon,
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import type { App } from '@/lib/apps'
 
 const iconMap: Record<string, LucideIcon> = {
@@ -14,70 +16,85 @@ const iconMap: Record<string, LucideIcon> = {
   Layers,
   MessageSquare,
   Zap,
+  Database,
+  Mail,
 }
 
-interface AppCardProps {
-  app: App
-  featured?: boolean
-}
-
-export function AppCard({ app, featured = false }: AppCardProps) {
+export function AppCard({ app }: { app: App }) {
   const Icon = iconMap[app.icon] ?? Globe
+  const [colorA, colorB] = app.gradient
+  const isLive = app.status === 'live'
 
   return (
-    <div
-      className={cn(
-        'group relative flex flex-col gap-4 rounded-2xl border border-surface-border bg-surface-raised p-6 transition-all duration-300',
-        'hover:-translate-y-0.5',
-        featured ? 'min-w-[320px]' : 'min-w-[280px]'
-      )}
+    <Link
+      href={isLive ? app.href : '#'}
+      className={`group relative flex flex-col gap-3 rounded-xl border border-surface-border bg-surface-raised p-4 transition-all duration-200 ${
+        isLive
+          ? 'cursor-pointer hover:-translate-y-0.5 hover:border-surface-muted'
+          : 'cursor-default opacity-70'
+      }`}
+      onClick={!isLive ? (e) => e.preventDefault() : undefined}
     >
-      {/* Hover border glow — pure CSS via box-shadow */}
+      {/* Gradient top accent bar */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{ boxShadow: `inset 0 0 0 1px ${app.color}40` }}
+        className="absolute inset-x-0 top-0 h-[2px] rounded-t-xl opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+        style={{
+          background: `linear-gradient(90deg, ${colorA}, ${colorB})`,
+        }}
       />
 
-      {/* Icon */}
+      {/* Subtle gradient glow on hover */}
       <div
-        className="flex h-10 w-10 items-center justify-center rounded-xl"
-        style={{ backgroundColor: `${app.color}1A` }}
+        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(ellipse 80% 60% at 20% 0%, ${colorA}0D 0%, transparent 60%)`,
+        }}
+      />
+
+      {/* Icon with gradient background */}
+      <div
+        className="relative flex h-9 w-9 items-center justify-center rounded-lg"
+        style={{
+          background: `linear-gradient(135deg, ${colorA}26, ${colorB}1A)`,
+          border: `1px solid ${colorA}33`,
+        }}
       >
-        <Icon className="h-5 w-5" style={{ color: app.color }} />
+        <Icon className="h-4 w-4" style={{ color: colorA }} />
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col gap-1.5">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-content-primary">{app.name}</span>
-          {app.status === 'live' ? (
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">
+      {/* Name + status */}
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center justify-between gap-1">
+          <span className="text-sm font-semibold leading-none text-content-primary">
+            {app.name}
+          </span>
+          {isLive ? (
+            <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-400">
               <span className="h-1 w-1 rounded-full bg-emerald-400" />
               Live
             </span>
           ) : (
-            <span className="rounded-full border border-surface-muted px-2 py-0.5 text-xs font-medium text-content-muted">
-              Coming soon
+            <span className="rounded-full border border-surface-muted px-1.5 py-0.5 text-[10px] font-medium text-content-muted">
+              Soon
             </span>
           )}
         </div>
-        <p className="text-xs font-medium text-content-accent">{app.tagline}</p>
-        <p className="mt-1 text-xs leading-relaxed text-content-secondary">{app.description}</p>
+
+        <p className="text-[11px] leading-relaxed text-content-secondary line-clamp-2">
+          {app.description}
+        </p>
       </div>
 
-      {/* CTA for live apps */}
-      {app.status === 'live' && (
-        <div className="mt-auto pt-2">
-          <a
-            href="#"
-            className="inline-flex items-center gap-1 text-xs font-medium transition-opacity hover:opacity-70"
-            style={{ color: app.color }}
-          >
-            Open App
-            <ArrowRight className="h-3 w-3" />
-          </a>
+      {/* CTA arrow for live apps */}
+      {isLive && (
+        <div
+          className="mt-auto flex items-center gap-1 text-[11px] font-medium transition-opacity duration-150 group-hover:opacity-80"
+          style={{ color: colorA }}
+        >
+          Open
+          <ArrowRight className="h-3 w-3 transition-transform duration-150 group-hover:translate-x-0.5" />
         </div>
       )}
-    </div>
+    </Link>
   )
 }
