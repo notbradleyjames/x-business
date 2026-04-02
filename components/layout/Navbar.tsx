@@ -1,0 +1,116 @@
+'use client'
+
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+
+export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-surface-border bg-surface-base/80 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+
+        {/* Wordmark */}
+        <a href="/" className="flex items-center gap-2">
+          <span className="flex h-6 w-6 items-center justify-center rounded bg-accent-blue text-[10px] font-bold tracking-tight text-white">
+            X
+          </span>
+          <span className="text-sm font-semibold tracking-tight text-content-primary">
+            Business
+          </span>
+        </a>
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-6 sm:flex">
+          <a
+            href="#apps"
+            className="text-xs font-medium text-content-secondary transition-colors hover:text-content-primary"
+          >
+            Apps
+          </a>
+          <a
+            href="#platform"
+            className="text-xs font-medium text-content-secondary transition-colors hover:text-content-primary"
+          >
+            Platform
+          </a>
+          <a
+            href="#xcrawl"
+            className="text-xs font-medium text-content-secondary transition-colors hover:text-content-primary"
+          >
+            X Crawl
+          </a>
+        </nav>
+
+        {/* Desktop CTAs */}
+        <div className="hidden items-center gap-2 sm:flex">
+          <a
+            href="#"
+            className="rounded-lg px-3 py-1.5 text-xs font-medium text-content-secondary transition-colors hover:bg-surface-raised hover:text-content-primary"
+          >
+            Enter Workspace
+          </a>
+          <a
+            href="#xcrawl"
+            className="rounded-lg bg-accent-blue px-3 py-1.5 text-xs font-medium text-white transition-opacity hover:opacity-90"
+          >
+            View X Crawl
+          </a>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-content-secondary transition-colors hover:bg-surface-raised hover:text-content-primary sm:hidden"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="border-t border-surface-border bg-surface-base px-4 py-4 sm:hidden">
+          <nav className="flex flex-col gap-3">
+            <a
+              href="#apps"
+              className="text-sm font-medium text-content-secondary"
+              onClick={() => setMobileOpen(false)}
+            >
+              Apps
+            </a>
+            <a
+              href="#platform"
+              className="text-sm font-medium text-content-secondary"
+              onClick={() => setMobileOpen(false)}
+            >
+              Platform
+            </a>
+            <a
+              href="#xcrawl"
+              className="text-sm font-medium text-content-secondary"
+              onClick={() => setMobileOpen(false)}
+            >
+              X Crawl
+            </a>
+            <div className="mt-2 flex flex-col gap-2 border-t border-surface-border pt-3">
+              <a
+                href="#"
+                className="rounded-lg border border-surface-border px-3 py-2 text-center text-sm font-medium text-content-primary"
+              >
+                Enter Workspace
+              </a>
+              <a
+                href="#xcrawl"
+                className="rounded-lg bg-accent-blue px-3 py-2 text-center text-sm font-medium text-white"
+                onClick={() => setMobileOpen(false)}
+              >
+                View X Crawl
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
+  )
+}
