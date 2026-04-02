@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SectionLabel } from '@/components/ui/SectionLabel'
 import { GradientDivider } from '@/components/ui/GradientDivider'
 import { staggerContainer, fadeIn } from '@/lib/motion'
 
@@ -30,12 +29,14 @@ const pillars = [
 
 export function Philosophy() {
   return (
-    <section className="py-24">
+    <section id="platform" className="py-24">
       <GradientDivider className="mb-24" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
 
         <div className="mb-12 flex flex-col items-center gap-3 text-center">
-          <SectionLabel>Our Principles</SectionLabel>
+          <span className="font-mono text-[10px] font-medium tracking-widest text-content-muted uppercase">
+            Our Principles
+          </span>
           <h2 className="text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
             Built different.{' '}
             <span className="text-content-secondary">By design.</span>
@@ -55,7 +56,7 @@ export function Philosophy() {
               variants={fadeIn}
               className="flex flex-col gap-3 rounded-xl border border-surface-border bg-surface-raised p-6 transition-colors hover:border-surface-muted"
             >
-              <span className="font-mono text-xs font-medium text-content-muted">{number} /</span>
+              <span className="font-mono text-xs font-medium text-accent-amber/50">{number} /</span>
               <h3 className="text-base font-semibold text-content-primary">{title}</h3>
               <p className="text-sm leading-relaxed text-content-secondary">{body}</p>
             </motion.div>

@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, ArrowRight, Globe } from 'lucide-react'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { Check, ArrowRight } from 'lucide-react'
+import { ScorpionIcon } from '@/components/ui/AppIcon'
 import { GradientDivider } from '@/components/ui/GradientDivider'
 import { staggerContainer, fadeUp } from '@/lib/motion'
 
@@ -26,9 +26,21 @@ export function FeaturedApp() {
       <GradientDivider className="mb-24" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div
-          className="overflow-hidden rounded-2xl border border-surface-border bg-surface-raised"
-          style={{ boxShadow: '0 0 60px rgba(59,130,246,0.04)' }}
+          className="overflow-hidden rounded-2xl border border-surface-muted bg-surface-raised"
+          style={{
+            boxShadow:
+              '0 0 0 1px rgba(232,168,48,0.06), 0 24px 80px rgba(232,168,48,0.05)',
+          }}
         >
+          {/* Amber top accent line */}
+          <div
+            className="h-px w-full"
+            style={{
+              background:
+                'linear-gradient(to right, transparent 5%, rgba(232,168,48,0.3) 35%, rgba(245,196,66,0.5) 50%, rgba(232,168,48,0.3) 65%, transparent 95%)',
+            }}
+          />
+
           <div className="grid grid-cols-1 lg:grid-cols-2">
 
             {/* Left: Content */}
@@ -40,14 +52,28 @@ export function FeaturedApp() {
               viewport={{ once: true, margin: '-80px' }}
             >
               <motion.div variants={fadeUp} className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-blue/10">
-                  <Globe className="h-4 w-4 text-accent-blue" />
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-amber-dim"
+                  style={{ boxShadow: '0 0 16px rgba(232,168,48,0.2)' }}
+                >
+                  <ScorpionIcon className="h-6 w-6 text-accent-amber" />
                 </div>
-                <SectionLabel>First App · Live Now</SectionLabel>
+                <span className="font-mono text-[10px] font-medium tracking-widest text-content-muted uppercase">
+                  First App · Live Now
+                </span>
               </motion.div>
 
               <motion.div variants={fadeUp}>
-                <h2 className="text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
+                <h2
+                  className="text-2xl font-bold tracking-tight sm:text-3xl"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(135deg, #F5C442 0%, #E8A830 50%, #C4571C 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
                   X Crawl
                 </h2>
                 <p className="mt-1 text-xl font-medium text-content-secondary">
@@ -68,7 +94,7 @@ export function FeaturedApp() {
                     variants={fadeUp}
                     className="flex items-start gap-2.5 text-sm text-content-secondary"
                   >
-                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent-blue" />
+                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent-amber" />
                     {feature}
                   </motion.li>
                 ))}
@@ -77,15 +103,15 @@ export function FeaturedApp() {
               <motion.div variants={fadeUp}>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent-blue transition-opacity hover:opacity-70"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-accent-amber transition-opacity hover:opacity-70"
                 >
-                  View X Crawl
+                  Launch X Crawl
                   <ArrowRight className="h-4 w-4" />
                 </a>
               </motion.div>
             </motion.div>
 
-            {/* Right: Mock UI panel */}
+            {/* Right: Mock UI */}
             <div className="border-t border-surface-border bg-surface-overlay p-6 lg:border-l lg:border-t-0 lg:p-8">
               <MockCrawlUI />
             </div>
@@ -104,28 +130,36 @@ function MockCrawlUI() {
         <div className="h-2 w-2 rounded-full bg-surface-muted" />
         <div className="h-2 w-2 rounded-full bg-surface-muted" />
         <div className="h-2 w-2 rounded-full bg-surface-muted" />
-        <span className="ml-2 font-mono text-[10px] text-content-muted">
-          x-crawl · active session
-        </span>
+        <div className="ml-2 flex items-center gap-1.5">
+          <ScorpionIcon className="h-3 w-3 text-accent-amber/60" />
+          <span className="font-mono text-[10px] text-content-muted">
+            x-crawl · active session
+          </span>
+        </div>
       </div>
 
       {/* URL input bar */}
       <div className="flex gap-2 rounded-lg border border-surface-border bg-surface-base p-1">
         <div className="flex flex-1 items-center gap-2 px-2 py-1">
-          <Globe className="h-3 w-3 shrink-0 text-content-muted" />
+          <ScorpionIcon className="h-3 w-3 shrink-0 text-content-muted" />
           <span className="truncate font-mono text-xs text-content-accent">
             https://example.com/products
           </span>
         </div>
-        <button className="rounded-md bg-accent-blue px-3 py-1 text-xs font-semibold text-white">
+        <button
+          className="rounded-md px-3 py-1 text-xs font-bold text-surface-base"
+          style={{
+            background: 'linear-gradient(135deg, #F5C442, #E8A830)',
+          }}
+        >
           Crawl
         </button>
       </div>
 
       {/* Status line */}
       <div className="flex items-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-        <span className="font-mono text-[10px] text-emerald-400/70">
+        <span className="h-1.5 w-1.5 rounded-full bg-accent-amber" />
+        <span className="font-mono text-[10px] text-accent-amber/70">
           Extraction complete · 24 records · 0.8s
         </span>
       </div>
@@ -145,7 +179,7 @@ function MockCrawlUI() {
             className="grid grid-cols-3 border-b border-surface-border/50 px-3 py-2 last:border-0"
           >
             <span className="truncate font-mono text-[10px] text-content-secondary">{name}</span>
-            <span className="font-mono text-[10px] text-emerald-400/70">{price}</span>
+            <span className="font-mono text-[10px] text-accent-amber/80">{price}</span>
             <span className="truncate font-mono text-[10px] text-content-muted">{url}</span>
           </div>
         ))}
@@ -158,7 +192,7 @@ function MockCrawlUI() {
           {['JSON', 'CSV', 'API'].map((fmt) => (
             <button
               key={fmt}
-              className="rounded border border-surface-border px-2 py-0.5 font-mono text-[10px] text-content-muted transition-colors hover:border-surface-muted hover:text-content-secondary"
+              className="rounded border border-surface-border px-2 py-0.5 font-mono text-[10px] text-content-muted transition-colors hover:border-accent-amber/30 hover:text-accent-amber"
             >
               {fmt}
             </button>

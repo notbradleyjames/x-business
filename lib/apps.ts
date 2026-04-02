@@ -16,10 +16,20 @@ export const apps: App[] = [
     name: 'X Crawl',
     tagline: 'Web intelligence, automated.',
     status: 'live',
-    icon: 'Globe',
-    color: '#3B82F6',
+    icon: 'Scorpion',
+    color: '#E8A830',
     description:
       'Extract structured data from any website. Monitor changes, build datasets, and power your workflows — no third-party APIs.',
+  },
+  {
+    id: 'xread',
+    name: 'X Read',
+    tagline: 'Deep reading, distilled.',
+    status: 'coming-soon',
+    icon: 'BookOpen',
+    color: '#9E8B6E',
+    description:
+      'Parse, summarize, and annotate documents, articles, and research — all within your own infrastructure.',
   },
   {
     id: 'xops',
@@ -27,7 +37,7 @@ export const apps: App[] = [
     tagline: 'Internal ops, simplified.',
     status: 'coming-soon',
     icon: 'Layers',
-    color: '#6366F1',
+    color: '#9E8B6E',
     description:
       'Manage internal processes, approvals, and team workflows without third-party tools.',
   },
@@ -37,7 +47,7 @@ export const apps: App[] = [
     tagline: 'Customer support, owned.',
     status: 'coming-soon',
     icon: 'MessageSquare',
-    color: '#10B981',
+    color: '#9E8B6E',
     description:
       'A client-facing support and communication layer built into your own infrastructure.',
   },
@@ -47,7 +57,7 @@ export const apps: App[] = [
     tagline: 'Automation without limits.',
     status: 'coming-soon',
     icon: 'Zap',
-    color: '#F59E0B',
+    color: '#9E8B6E',
     description:
       'Visual automation builder for connecting internal tools and external services.',
   },

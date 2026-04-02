@@ -2,20 +2,26 @@
 
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { ScorpionIcon } from '@/components/ui/AppIcon'
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-surface-border bg-surface-base/80 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-surface-border bg-surface-base/85 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
 
         {/* Wordmark */}
-        <a href="/" className="flex items-center gap-2">
-          <span className="flex h-6 w-6 items-center justify-center rounded bg-accent-blue text-[10px] font-bold tracking-tight text-white">
+        <a href="/" className="flex items-center gap-2.5">
+          <span
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-[11px] font-black tracking-tight text-surface-base"
+            style={{
+              background: 'linear-gradient(135deg, #F5C442 0%, #E8A830 60%, #C4571C 100%)',
+            }}
+          >
             X
           </span>
-          <span className="text-sm font-semibold tracking-tight text-content-primary">
+          <span className="text-sm font-bold tracking-tight text-content-primary">
             Business
           </span>
         </a>
@@ -24,37 +30,41 @@ export function Navbar() {
         <nav className="hidden items-center gap-6 sm:flex">
           <a
             href="#apps"
-            className="text-xs font-medium text-content-secondary transition-colors hover:text-content-primary"
+            className="text-xs font-medium text-content-muted transition-colors hover:text-content-primary"
           >
-            Apps
-          </a>
-          <a
-            href="#platform"
-            className="text-xs font-medium text-content-secondary transition-colors hover:text-content-primary"
-          >
-            Platform
+            Hub
           </a>
           <a
             href="#xcrawl"
-            className="text-xs font-medium text-content-secondary transition-colors hover:text-content-primary"
+            className="flex items-center gap-1.5 text-xs font-medium text-content-muted transition-colors hover:text-content-primary"
           >
+            <ScorpionIcon className="h-3 w-3 text-accent-amber/70" />
             X Crawl
+          </a>
+          <a
+            href="#platform"
+            className="text-xs font-medium text-content-muted transition-colors hover:text-content-primary"
+          >
+            About
           </a>
         </nav>
 
-        {/* Desktop CTAs */}
+        {/* Desktop CTA */}
         <div className="hidden items-center gap-2 sm:flex">
           <a
             href="#"
             className="rounded-lg px-3 py-1.5 text-xs font-medium text-content-secondary transition-colors hover:bg-surface-raised hover:text-content-primary"
           >
-            Enter Workspace
+            Sign In
           </a>
           <a
-            href="#xcrawl"
-            className="rounded-lg bg-accent-blue px-3 py-1.5 text-xs font-medium text-white transition-opacity hover:opacity-90"
+            href="#apps"
+            className="rounded-lg px-3 py-1.5 text-xs font-bold text-surface-base transition-opacity hover:opacity-90"
+            style={{
+              background: 'linear-gradient(135deg, #F5C442 0%, #E8A830 60%)',
+            }}
           >
-            View X Crawl
+            Enter Hub
           </a>
         </div>
 
@@ -77,35 +87,31 @@ export function Navbar() {
               className="text-sm font-medium text-content-secondary"
               onClick={() => setMobileOpen(false)}
             >
-              Apps
+              Hub
+            </a>
+            <a
+              href="#xcrawl"
+              className="flex items-center gap-2 text-sm font-medium text-content-secondary"
+              onClick={() => setMobileOpen(false)}
+            >
+              <ScorpionIcon className="h-4 w-4 text-accent-amber" />
+              X Crawl
             </a>
             <a
               href="#platform"
               className="text-sm font-medium text-content-secondary"
               onClick={() => setMobileOpen(false)}
             >
-              Platform
-            </a>
-            <a
-              href="#xcrawl"
-              className="text-sm font-medium text-content-secondary"
-              onClick={() => setMobileOpen(false)}
-            >
-              X Crawl
+              About
             </a>
             <div className="mt-2 flex flex-col gap-2 border-t border-surface-border pt-3">
               <a
-                href="#"
-                className="rounded-lg border border-surface-border px-3 py-2 text-center text-sm font-medium text-content-primary"
-              >
-                Enter Workspace
-              </a>
-              <a
-                href="#xcrawl"
-                className="rounded-lg bg-accent-blue px-3 py-2 text-center text-sm font-medium text-white"
+                href="#apps"
+                className="rounded-lg px-3 py-2 text-center text-sm font-bold text-surface-base"
+                style={{ background: 'linear-gradient(135deg, #F5C442, #E8A830)' }}
                 onClick={() => setMobileOpen(false)}
               >
-                View X Crawl
+                Enter Hub
               </a>
             </div>
           </nav>
