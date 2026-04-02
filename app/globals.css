@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Surfaces */
-  --color-surface-base: #080A0C;
-  --color-surface-raised: #0E1114;
-  --color-surface-overlay: #13171C;
-  --color-surface-border: #1E2328;
-  --color-surface-muted: #2A2F36;
+  /* Surfaces — warm wood dark */
+  --color-surface-base: #080705;
+  --color-surface-raised: #100D09;
+  --color-surface-overlay: #181310;
+  --color-surface-border: #2C2218;
+  --color-surface-muted: #3E3020;
 
-  /* Content / Text */
-  --color-content-primary: #F0F2F5;
-  --color-content-secondary: #8A9099;
-  --color-content-muted: #4E555E;
-  --color-content-accent: #A8B5C8;
+  /* Content — warm cream */
+  --color-content-primary: #F4EDD5;
+  --color-content-secondary: #9E8B6E;
+  --color-content-muted: #5C4E3A;
+  --color-content-accent: #C8AA7A;
 
-  /* Accents */
-  --color-accent-blue: #3B82F6;
-  --color-accent-bluedim: #1E3A5F;
+  /* Accents — amber / gold */
+  --color-accent-amber: #E8A830;
+  --color-accent-gold: #F5C442;
+  --color-accent-amber-dim: #2C2008;
+  --color-accent-ember: #C4571C;
 
   /* Fonts */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
@@ -29,10 +31,26 @@ html {
 }
 
 body {
-  background-color: #080A0C;
-  color: #F0F2F5;
+  background-color: #080705;
+  color: #F4EDD5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle wood grain overlay */
+body::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    88deg,
+    transparent,
+    transparent 4px,
+    rgba(200, 160, 80, 0.012) 4px,
+    rgba(200, 160, 80, 0.012) 5px
+  );
 }
 
 /* Custom scrollbar */
@@ -40,12 +58,12 @@ body {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #080A0C;
+  background: #080705;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E2328;
+  background: #2C2218;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2A2F36;
+  background: #3E3020;
 }
